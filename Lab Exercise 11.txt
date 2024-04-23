@@ -1,0 +1,202 @@
+###Q1: Write a function to compute 5/0 and use try/except to catch the exceptions.
+#PROGRAM:
+def compute():
+    try:
+        result = 5 / 0
+        print("Result of division:", result)
+    except ZeroDivisionError:
+        print("Error: Division by zero!")
+
+compute()
+#OUTPUT:
+C:\Users\243597\PycharmProjects\pythonProject\.venv\Scripts\python.exe C:\Users\243597\PycharmProjects\pythonProject\tryexceptexample.py 
+Error: Division by zero!
+
+Process finished with exit code 0
+
+###Q2: Write a Python program to access the array element whose index is out of bound and handle
+the corresponding exception.
+#PROGRAM:
+def access_array(arr, index):
+    try:
+        value = arr[index]
+        print("Value at index", index, ":", value)
+    except IndexError:
+        print("Error: Index out of bounds!")
+
+my_array = [2,4,6,8,10]
+index = 5
+access_array(my_array, index)
+
+#OUTPUT:
+C:\Users\243597\PycharmProjects\pythonProject\.venv\Scripts\python.exe C:\Users\243597\PycharmProjects\pythonProject\tryexceptexample.py 
+Error: Index out of bounds!
+
+Process finished with exit code 0
+
+###Q 3: Write a Python Program to handle multiple errors with one except statement.
+#PROGRAM:
+def handle_multiple_errors():
+    try:
+        x = int(input("Enter a number: "))
+        y = 0
+        result = x / y
+        print("Result of division:", result)
+        my_list = [2, 3, 4]
+        print("Value at index 3:", my_list[3])
+    except (ValueError, ZeroDivisionError, IndexError) as p:
+        print("Error:", p)
+
+
+handle_multiple_errors()
+
+#OUTPUT:
+C:\Users\243597\PycharmProjects\pythonProject\.venv\Scripts\python.exe C:\Users\243597\PycharmProjects\pythonProject\tryexceptexample.py 
+Enter a number: 2
+Error: division by zero
+
+Process finished with exit code 0
+
+###Q 4: Write a Python Program to depict else clause with try-except.
+#PROGRAM:
+def divide(x, y):
+    try:
+        result = x / y
+    except ZeroDivisionError:
+        print("Error: Cannot divide by zero!")
+    else:
+        print("Completly Divide")
+        print("Result:", result)
+
+
+divide(30, 2)
+divide(15, 0)
+
+#OUTPUT:
+C:\Users\243597\PycharmProjects\pythonProject\.venv\Scripts\python.exe C:\Users\243597\PycharmProjects\pythonProject\tryexceptexample.py 
+Completly Divide
+Result: 15.0
+Error: Cannot divide by zero!
+
+Process finished with exit code 0
+
+###Q5: Write a Python Program to depict Raising Exception.
+#PROGRAM:
+def check_age(age):
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    elif age < 18:
+        raise ValueError("You must be at least 18 years old")
+    else:
+        print("Age is valid")
+
+try:
+    user_age = int(input("Enter your age: "))
+    check_age(user_age)
+except ValueError as e:
+    print("Error:", e)
+
+#OUTPUT:
+C:\Users\243597\PycharmProjects\pythonProject\.venv\Scripts\python.exe C:\Users\243597\PycharmProjects\pythonProject\tryexceptexample.py 
+Enter your age: 16
+Error: You must be at least 18 years old
+
+Process finished with exit code 0
+
+###Q6: Write a python program to create user-defined exception.
+#PROGRAM:
+class Exception(Exception):
+    def __init__(self, message=""):
+        self.message = message
+
+    def __str__(self):
+        return f"MyCustomException: {self.message}"
+
+def check_value(x):
+    if x < 0:
+        raise Exception("Value cannot be negative")
+
+
+try:
+    user_input = int(input("Enter a number: "))
+    check_value(user_input)
+    print("Value is valid")
+except Exception as e:
+    print("Error:", e)
+#OUTPUT:
+C:\Users\243597\PycharmProjects\pythonProject\.venv\Scripts\python.exe C:\Users\243597\PycharmProjects\pythonProject\tryexceptexample.py 
+Enter a number: 16
+Value is valid
+
+Process finished with exit code 0.
+
+###Q7: Print one message if the try block raises a NameError and another for other errors.
+#PROGRAM:
+try:
+    x = rrr
+except NameError:
+    print("Error: NameError occurred!")
+except Exception as e:
+    print("Error:", e)
+	
+#OUTPUT:
+C:\Users\243597\PycharmProjects\pythonProject\.venv\Scripts\python.exe C:\Users\243597\PycharmProjects\pythonProject\tryexceptexample.py 
+Error: NameError occurred!
+
+Process finished with exit code 0
+
+###Q8: Try to open and write to a file that is not writable.
+
+#PROGRAM:
+try:
+    with open("simple.txt", "w") as file:
+        file.write("Trying to write to a file that is not writable.")
+except PermissionError:
+    print("Error: Permission denied. The file is not writable.")
+except Exception as e:
+    print("Error:", e)
+
+###Q9: Write a python program to raise an error and stop the program if x is lower than 0.
+
+#PROGRAM:
+def check_value(x):
+    if x < 0:
+        raise ValueError("x must be greater than or equal to 0")
+try:
+    user_input = int(input("Enter a number: "))
+    check_value(user_input)
+    print("Value is valid")
+except ValueError as e:
+    print("Error:", e)
+    exit(1)
+#OUTPUT:
+C:\Users\243597\PycharmProjects\pythonProject\.venv\Scripts\python.exe C:\Users\243597\PycharmProjects\pythonProject\tryexceptexample.py 
+Enter a number: -99
+Error: x must be greater than or equal to 0
+
+Process finished with exit code 1
+
+
+###Q10: Write a python program to raise a TypeError if x is not an integer.
+#PROGRAM:
+def check_integer(x):
+    if not isinstance(x, int):
+        raise TypeError("x must be an integer")
+
+try:
+    user_input = input("Enter a number: ")
+    user_input = int(user_input)
+    check_integer(user_input)
+    print("Value is an integer")
+except ValueError:
+    print("Error: Input is not a valid integer")
+except TypeError as e:
+    print("Error:", e)
+    exit(1)
+
+#OUTPUT:
+C:\Users\243597\PycharmProjects\pythonProject\.venv\Scripts\python.exe C:\Users\243597\PycharmProjects\pythonProject\tryexceptexample.py 
+Enter a number: 1e
+Error: Input is not a valid integer
+
+Process finished with exit code 0
